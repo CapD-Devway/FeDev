@@ -2,9 +2,9 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import styled, { ThemeProvider } from "styled-components";
 import { PropsWithChildren, useEffect } from "react";
-import GlobalStyle from "../../styles/GlobalStyle";
-import theme from "../../styles/Theme/theme";
-import useWindowSize from "../hooks/useWindowSize";
+import GlobalStyle from "styles/GlobalStyle";
+import theme from "styles/Theme/theme";
+import useWindowSize from "src/hooks/useWindowSize";
 
 function App({ Component, pageProps }: AppProps) {
   return (
