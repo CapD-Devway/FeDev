@@ -7,10 +7,12 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: "Noto Sans KR", sans-serif;
   }
+
   html, body {
-    background-color: ${({ theme }) => theme.color.white};
+    background-color: ${({ theme }) => theme.color.bgColor};
     color: ${({ theme }) => theme.color.white};
   }
+
   button,
   img,
   a {
