@@ -24,6 +24,7 @@ function Signin() {
           </StyledLottieDIv>
           <div>
             <StyledH3>로그인</StyledH3>
+            
           </div>
         </StyledLoginDiv>
         {/* Login Footer Part */}
