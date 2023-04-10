@@ -26,18 +26,19 @@ const StyledButton = styled.button`
   border: 1px solid ${({ theme }) => theme.color.lineCOlorLight};
   border-radius: ${({ theme }) => theme.borderRadius.button};
 
+  color: ${({ theme }) => theme.color.fontColorDark};
   font-size: 1rem;
-  background-color: ${({ theme }) => theme.color.bgColorLight};
-  transition: .5s;
-  :hover{
-    background-color: ${({theme}) => theme.color.brandColorLight};
-    border-color: ${({theme}) => theme.color.lineColorMiddle};
+  background-color: ${({ theme }) => theme.color.brandColorLight};
+  transition: 0.5s;
+  :hover {
+    background-color: ${({ theme }) => theme.color.brandColorMedium};
+    border-color: ${({ theme }) => theme.color.lineColorMiddle};
+    color: ${({ theme }) => theme.color.white};
   }
 `;
 
 const StyledButtonP = styled.p`
   font-size: ${({ theme }) => theme.fontSize.fontSize2};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
-  color: ${({ theme }) => theme.color.fontColorGrey};
   margin: 0 auto;
 `;

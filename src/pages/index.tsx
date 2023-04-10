@@ -12,8 +12,8 @@ function Home() {
   return (
     <>
       <StyledH1>hhi</StyledH1>
-      <CommonBtn type="submit" name="로그인" />
-      <CommonInputForm type= "text" id="Email" value= {userId} onChange={onChangeUserId}/>
+      {/* <CommonBtn type="submit" name="로그인" /> */}
+      {/* <CommonInputForm type= "text" id="Email" value= {userId} onChange={onChangeUserId} placeholder="Email"/> */}
     </> 
   );
 }
