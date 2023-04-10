@@ -1,9 +1,9 @@
 import { User } from "firebase/auth";
-import { useEffect, useState } from "react";
+import React, { PropsWithChildren, useEffect, useState } from "react";
 import { auth } from "src/constants/firebaseConfig";
 import { AuthContext } from "src/context/authContenxt";
 
-const AuthProvider: React.FC = ({ children }) => {
+const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
