@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import LoginLottie from "src/Components/Common/LoginLottie";
 import animationData from "src/assets/lottieJSON/collabo.json";
+import animationDatatwo from "src/assets/lottieJSON/rocket.json";
 import styled from "styled-components";
 
 function Signin() {
@@ -20,11 +21,14 @@ function Signin() {
         {/* Login Body Part */}
         <StyledLoginDiv>
           <StyledLottieDIv>
-            <LoginLottie lottieData={animationData} width={600} height={580} />
+            <LoginLottie
+              lottieData={animationDatatwo}
+              width={600}
+              height={580}
+            />
           </StyledLottieDIv>
           <div>
             <StyledH3>로그인</StyledH3>
-            
           </div>
         </StyledLoginDiv>
         {/* Login Footer Part */}

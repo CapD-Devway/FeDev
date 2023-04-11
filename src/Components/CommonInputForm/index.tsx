@@ -13,16 +13,23 @@ interface IInputLabelProps {
   placeholder: "Email" | "Password" | "Name";
 }
 
-function CommonInputForm(
-  { type, id, onChange, value, placeholder }: IInputFormProps,
-//   { placeholder }: IInputLabelProps
-) {
+function CommonInputForm({
+  type,
+  id,
+  onChange,
+  value,
+  placeholder,
+}: IInputFormProps) {
+  //   { placeholder }: IInputLabelProps
   return (
     <StyledWrapper>
-      <StyledInputForm type={type} id={id} onChange={onChange} value={value} placeholder={placeholder} />
-      {/* <label htmlFor={id}>
-        <span>{id}</span>
-      </label> */}
+      <StyledInputForm
+        type={type}
+        id={id}
+        onChange={onChange}
+        value={value}
+        placeholder={placeholder}
+      />
     </StyledWrapper>
   );
 }
@@ -62,23 +69,4 @@ const StyledInputForm = styled.input`
   :focus {
     outline: none;
   }
-
-  /* + label {
-    display: block;
-    position: absolute;
-    text-align: left;
-    font-weight: bold;
-    font-size: 0.7rem;
-    padding: 1rem 0;
-    color: gray;
-    margin-top: 0%.7rem;
-    transition: all 0.25s;
-    transform: translateY(-200%);
-  }
-
-  :focus + label {
-    color: gray;
-    transform: translateY(-210%);
-    font-size: 0.7rem;
-  } */
 `;
