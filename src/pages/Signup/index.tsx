@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useCallback, useContext, useState } from "react";
 import { AuthContext } from "src/context/authContenxt";
@@ -12,9 +12,7 @@ function Signup() {
 
   const [registerEmail, setRegisterEmail] = useState<string>("");
   const [regitserPassword, setRegisterPassword] = useState<string>("");
-  const [registerName, setRegisterName] = useState<string>("");
-  const [errorMsg, setErrorMsg] = useState<string>(" ");
-  const [isCreate, setIsCreate] = useState<boolean>(false);
+  const [registerName, setRegisterName] = useState<string | null>(null);
 
   // 이메일 입력 함수
   const onRegisterEmail = useCallback(
@@ -32,7 +30,7 @@ function Signup() {
     },
     []
   );
-  // 이름 입력 함수
+  // 닉네임 입력 함수
   const onRegisterName = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       e.preventDefault();
@@ -40,33 +38,35 @@ function Signup() {
     },
     []
   );
-  // 회원가입 버튼 클릭 함수
-  const onClickCreate = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault();
-      setIsCreate((pre) => !pre);
-    },
-    []
-  );
-  // firebase에서 제공하는 회원가입 함수 사용
-  const onSubmit = useCallback(async (e: React.FormEvent) => {
-    e.preventDefault();
 
-    // 회원 가입일 경우
-    {
-      await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        regitserPassword
-      )
-        .then(() => {
-          alert("회원가입 성공");
+  // firebase에서 제공하는 회원가입 함수 사용
+  const onSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+
+      createUserWithEmailAndPassword(auth, registerEmail, regitserPassword)
+        .then((userCredential) => {
+          // firebase에서 반환된 user 객체에서 displayName 속성 값을 가져옴
+          const displayNameFromFirebase = userCredential.user.displayName;
+          // displayNameFromFirebase가 null 또는 undefined인 경우, 빈 문자열로 설정
+          setRegisterName(displayNameFromFirebase || "");
+          // 회원가입 성공시 로그인 페이지 이동
+          router.push("/Signin");
         })
-        .catch((e) => {
-          alert(e);
+        .catch((err) => {
+          if (err.code === "auth/weak-password") {
+            alert("비밀번호는 6글자 이상이어야 합니다.");
+          } else if (err.code === "auth/invalid-email") {
+            alert("이메일 형식을 지켜주세요");
+          } else if (err.code === "auth/email-already-in-use") {
+            alert("이미 가입되어 있는 계정입니다.");
+          } else {
+            alert("로그인에 실패 하였습니다.");
+          }
         });
-    }
-  }, []);
+    },
+    [registerEmail, registerName, regitserPassword]
+  );
 
   return (
     <div>
@@ -94,7 +94,7 @@ function Signup() {
             type="text"
             id="Name"
             onChange={onRegisterName}
-            value={registerName}
+            value={registerName || ""}
             placeholder="Name"
           />
         </div>

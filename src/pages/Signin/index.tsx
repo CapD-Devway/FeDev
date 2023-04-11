@@ -1,11 +1,55 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import Image from "next/image";
 import LoginLottie from "src/Components/Common/LoginLottie";
 import animationData from "src/assets/lottieJSON/collabo.json";
 import animationDatatwo from "src/assets/lottieJSON/rocket.json";
 import styled from "styled-components";
+import { useRouter } from "next/router";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "src/constants/firebaseConfig";
+import CommonInputForm from "src/Components/CommonInputForm";
+import CommonBtn from "src/Components/CommonBtn";
 
 function Signin() {
+  const router = useRouter();
+
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  // 이메일 입력 부분
+  const onSetEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setEmail(e.target.value);
+  }, []);
+
+  // 비밀번호 입력 부분
+  const onSetPassword = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault();
+      setPassword(e.target.value);
+    },
+    []
+  );
+
+  // firebase에서 제공하는 로그인 함수 사용
+  const onLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        router.push("/");
+        console.log(user.displayName);
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
+
   return (
     <>
       <StyledContainer>
@@ -23,11 +67,28 @@ function Signin() {
           <StyledLottieDIv>
             <LoginLottie
               lottieData={animationDatatwo}
-              width={600}
-              height={580}
+              width={500}
+              height={500}
             />
           </StyledLottieDIv>
           <div>
+            <form onSubmit={onLogin}>
+              <CommonInputForm
+                type="email"
+                id="Email"
+                onChange={onSetEmail}
+                value={email}
+                placeholder="Email"
+              />
+              <CommonInputForm
+                type="password"
+                id="Password"
+                onChange={onSetPassword}
+                value={password}
+                placeholder="Password"
+              />
+              <CommonBtn type="submit" name="로그인" />
+            </form>
             <StyledH3>로그인</StyledH3>
           </div>
         </StyledLoginDiv>
