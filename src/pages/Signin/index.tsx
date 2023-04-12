@@ -9,6 +9,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "src/constants/firebaseConfig";
 import CommonInputForm from "src/Components/CommonInputForm";
 import CommonBtn from "src/Components/CommonBtn";
+import GoogleLogin from "src/Components/GoogleLogin";
+import GithubLogin from "src/Components/GithubLogin";
 
 function Signin() {
   const router = useRouter();
@@ -90,6 +92,8 @@ function Signin() {
               <CommonBtn type="submit" name="로그인" />
             </form>
             <StyledH3>로그인</StyledH3>
+          <GoogleLogin />
+          <GithubLogin />
           </div>
         </StyledLoginDiv>
         {/* Login Footer Part */}
