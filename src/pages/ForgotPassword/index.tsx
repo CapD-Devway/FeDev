@@ -1,8 +1,9 @@
-import { sendPasswordResetEmail } from "firebase/auth";
+import { Auth, sendPasswordResetEmail } from "firebase/auth";
 import React, { useCallback, useState } from "react";
 import { auth } from "src/constants/firebaseConfig";
 import CommonBtn from "src/Components/CommonBtn";
 import CommonInputForm from "src/Components/CommonInputForm";
+
 
 function ForgotPassword() {
   const [registeredEmail, setRegisteredEmail] = useState<string>("");
@@ -24,7 +25,7 @@ function ForgotPassword() {
       .catch(() => {
         alert("등록되지 않은 이메일입니다.");
       });
-  }, []);
+  }, [auth, registeredEmail]);
 
   return (
     <form onSubmit={onSubmit}>
