@@ -26,7 +26,7 @@ function GithubLogin() {
 
       await createUserIfNotExists(user);
     } catch (error) {
-      if (error.code === "auth/account-exists-with-different-credential") {
+      if (error === "auth/account-exists-with-different-credential") {
         console.log("이미 이메일이 존재합니다?");
       } else {
         console.log(error);

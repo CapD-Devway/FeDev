@@ -1,10 +1,14 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import Image from "next/image";
+import animationDatatwo from "src/assets/lottieJSON/rocket.json";
 import { useRouter } from "next/router";
 import { useCallback, useContext, useState } from "react";
 import { AuthContext } from "src/context/authContenxt";
 import { auth } from "src/constants/firebaseConfig";
 import CommonInputForm from "src/Components/CommonInputForm";
 import CommonBtn from "src/Components/CommonBtn";
+import styled from "styled-components";
+import LoginLottie from "src/Components/Common/LoginLottie";
 
 function Signup() {
   const router = useRouter();
@@ -70,38 +74,88 @@ function Signup() {
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
-        <div>
-          <CommonInputForm
-            type="email"
-            id="Email"
-            onChange={onRegisterEmail}
-            value={registerEmail}
-            placeholder="Email"
-          />
-        </div>
-        <div>
-          <CommonInputForm
-            type="password"
-            id="Password"
-            onChange={onRegisterPassword}
-            value={regitserPassword}
-            placeholder="Password"
-          />
-        </div>
-        <div>
-          <CommonInputForm
-            type="text"
-            id="Name"
-            onChange={onRegisterName}
-            value={registerName || ""}
-            placeholder="Name"
-          />
-        </div>
-        <CommonBtn type="submit" name="회원가입" />
-      </form>
+      {/* Signup NavBar Part */}
+      <StyledLogoBar>
+        <Image
+          src="/images/devwaylogo.png"
+          alt="devway logo"
+          width={170}
+          height={44}
+        />
+      </StyledLogoBar>
+
+      {/* Signup Container body */}
+      <StyledSignUpDiv>
+        <StyledLottieDIv>
+          <LoginLottie lottieData={animationDatatwo} width={500} height={500} />
+        </StyledLottieDIv>
+        <StyledUserBorder>
+          <StyledSignUpH3>회원가입</StyledSignUpH3>
+          <form onSubmit={onSubmit}>
+            <div>
+              <CommonInputForm
+                type="email"
+                id="Email"
+                onChange={onRegisterEmail}
+                value={registerEmail}
+                placeholder="Email"
+              />
+            </div>
+            <div>
+              <CommonInputForm
+                type="password"
+                id="Password"
+                onChange={onRegisterPassword}
+                value={regitserPassword}
+                placeholder="Password"
+              />
+            </div>
+            <div>
+              <CommonInputForm
+                type="text"
+                id="Name"
+                onChange={onRegisterName}
+                value={registerName || ""}
+                placeholder="Name"
+              />
+            </div>
+            <CommonBtn type="submit" name="회원가입" />
+          </form>
+        </StyledUserBorder>
+      </StyledSignUpDiv>
     </div>
   );
 }
 
 export default Signup;
+
+const StyledLogoBar = styled.div`
+  width: 88rem;
+  height: 5.75rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const StyledSignUpDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const StyledLottieDIv = styled.div`
+  margin-top: 0.625rem;
+`;
+
+const StyledUserBorder = styled.div`
+  border: 0.125rem solid ${({ theme }) => theme.color.brandColorLight};
+  border-radius: ${({ theme }) => theme.borderRadius.container};
+  padding: 4rem 3rem;
+  box-shadow: rgba(172, 243, 162, 0.3) 0px 2px 8px 0px;
+`;
+
+const StyledSignUpH3 = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.fontSize24};
+  color: ${({theme}) => theme.color.black}
+`;

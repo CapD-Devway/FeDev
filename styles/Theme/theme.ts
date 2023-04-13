@@ -28,20 +28,22 @@ const fontWeight = {
 const borderRadius = {
   input: "0.75rem",
   button: "0.625rem",
+  container: "0.375rem",
 };
 
 const fontSize = {
-  fontSize1: "0.75rem",
-  fontSize2: "1rem",
-  fontSize3: "1.5rem",
-  fontSize4: "1.75rem",
-  fontSize5: "2rem",
-  fontSize6: "2.25rem",
-  fontSize7: "2.5rem",
-  fontSize8: "3rem",
-  fontSize9: "3.5rem",
-  fontSize10: "4rem",
-  fontSize11: "4.5rem",
+  fontSize12: "0.75rem",
+  fontSize14: "0.875rem",
+  fontSize16: "1rem",
+  fontSize24: "1.5rem",
+  fontSize28: "1.75rem",
+  fontSize32: "2rem",
+  fontSize36: "2.25rem",
+  fontSize40: "2.5rem",
+  fontSize48: "3rem",
+  fontSize56: "3.5rem",
+  fontSize64: "4rem",
+  fontSize72: "4.5rem",
 }
 
 export type ColorsTypes = typeof color;

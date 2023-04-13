@@ -49,8 +49,9 @@ const StyledInputForm = styled.input`
   width: 21.25rem;
   height: 2.875rem;
   padding: 0 0 0 1rem;
+  margin-top: 1.6rem;
 
-  font-size: ${({ theme }) => theme.fontSize.fontSize2};
+  font-size: ${({ theme }) => theme.fontSize.fontSize14};
   color: ${({ theme }) => theme.color.fontColorDark};
 
   border: 0.0625rem solid ${({ theme }) => theme.color.lineCOlorLight};
@@ -62,7 +63,7 @@ const StyledInputForm = styled.input`
     color: ${({ theme }) => theme.color.fontColorLight};
   }
   ::placeholder-shown:not(:focus) + * {
-    font-size: ${({ theme }) => theme.fontSize.fontSize1};
+    font-size: ${({ theme }) => theme.fontSize.fontSize12};
     opacity: 1;
     color: ${({ theme }) => theme.color.fontColorLight};
   }
