@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import LoginLottie from "src/Components/Common/LoginLottie";
-import animationData from "src/assets/lottieJSON/collabo.json";
 import animationDatatwo from "src/assets/lottieJSON/rocket.json";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -54,7 +54,7 @@ function Signin() {
 
   return (
     <>
-      <StyledContainer>
+      <div>
         {/* Login Nav Bar Part */}
         <StyledLogoBar>
           <Image
@@ -73,7 +73,8 @@ function Signin() {
               height={500}
             />
           </StyledLottieDIv>
-          <div>
+          <StyledUserBorder>
+            <StyledSignUpH3>로그인</StyledSignUpH3>
             <form onSubmit={onLogin}>
               <CommonInputForm
                 type="email"
@@ -89,25 +90,28 @@ function Signin() {
                 value={password}
                 placeholder="Password"
               />
+              <Link href="/ForgotPassword">
+                <StyledAlreadyP>비밀번호 잊어버리셨나요?</StyledAlreadyP>
+              </Link>
               <CommonBtn type="submit" name="로그인" />
+              <Link href="/Signup">
+                <StyledAlreadyDiv>계정이 없으신가요?</StyledAlreadyDiv>
+              </Link>
             </form>
-            <StyledH3>로그인</StyledH3>
-          <GoogleLogin />
-          <GithubLogin />
-          </div>
+            <StyledSplitDiv>또는</StyledSplitDiv>
+            <StyledSocialLoginDiv>
+              <GoogleLogin />
+              <GithubLogin />
+            </StyledSocialLoginDiv>
+          </StyledUserBorder>
         </StyledLoginDiv>
         {/* Login Footer Part */}
-      </StyledContainer>
+      </div>
     </>
   );
 }
 
 export default Signin;
-
-const StyledContainer = styled.div`
-  width: 90rem;
-  height: 56.25rem;
-`;
 
 const StyledLogoBar = styled.div`
   width: 88rem;
@@ -128,6 +132,69 @@ const StyledLottieDIv = styled.div`
   margin-top: 0.625rem;
 `;
 
-const StyledH3 = styled.h3`
+const StyledUserBorder = styled.div`
+  margin-top: 3.125rem;
+  width: 30.625rem;
+  height: 38.25rem;
+  border: 0.125rem solid ${({ theme }) => theme.color.brandColorLight};
+  border-radius: ${({ theme }) => theme.borderRadius.container};
+  padding: 4rem 3rem;
+  box-shadow: rgba(172, 243, 162, 0.3) 0px 2px 8px 0px;
+`;
+
+const StyledSignUpH3 = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.fontSize24};
   color: ${({ theme }) => theme.color.black};
+`;
+
+const StyledAlreadyDiv = styled.div`
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: ${({ theme }) => theme.fontSize.fontSize12};
+  color: ${({ theme }) => theme.color.black};
+  opacity: 0.6;
+  transition: all 0.5s;
+  :hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+`;
+
+const StyledAlreadyP = styled.p`
+  margin-top: 1.25rem;
+  text-align: right;
+  font-size: ${({ theme }) => theme.fontSize.fontSize12};
+  color: ${({ theme }) => theme.color.black};
+  opacity: 0.6;
+  transform: translateX(-1.875rem);
+  transition: all 0.5s;
+  :hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+`;
+
+const StyledSplitDiv = styled.div`
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  color: ${({ theme }) => theme.color.black};
+  font-size: 12px;
+  margin: 1.25rem 0rem;
+  ::before,
+  ::after {
+    content: "";
+    flex-grow: 1;
+    background: ${({ theme }) => theme.color.lineColorMiddle};
+    height: 1px;
+    font-size: 0px;
+    line-height: 0px;
+    margin: 1.25rem 16px;
+  }
+`;
+
+const StyledSocialLoginDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 50px;
 `;

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { GoogleAuthProvider, User, signInWithPopup } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { useRouter } from "next/router";
@@ -29,24 +30,28 @@ function GoogleLogin() {
           profilePhoto: user.photoURL,
         });
       }
-      router.push('/');
+      router.push("/");
     } catch (err) {
       console.log(err);
     }
   };
 
-  return(
+  return (
     <StyledDiv>
-        <h3>구글 로그인 테스트</h3>
-        <button onClick={signInWithGoogle}> 로그인</button>
-        <div>{userData ?"당신의 이름은?" + userData.displayName : "로그인 버튼 클릭:)"}</div>
+      <button onClick={signInWithGoogle}>
+        <Image
+          src="/images/LoginGoogle.png"
+          alt="구글 로그인"
+          width={490}
+          height={612}
+        />
+      </button>
     </StyledDiv>
-  )
+  );
 }
 
 export default GoogleLogin;
 
-
 const StyledDiv = styled.div`
-    color: black;
-`
+  color: black;
+`;

@@ -1,4 +1,4 @@
-import { errorMonitor } from "events";
+import Image from "next/image";
 import {
   GithubAuthProvider,
   User,
@@ -73,8 +73,14 @@ function GithubLogin() {
 
   return (
     <StyledDiv>
-      <h3>깃헙 로그인 테스트</h3>
-      <button onClick={signInWithGithub}>로그인</button>
+      <button onClick={signInWithGithub}>
+        <Image
+          src="/images/LoginGithub.png"
+          alt="구글 로그인"
+          width={490}
+          height={612}
+        />
+      </button>
     </StyledDiv>
   );
 }

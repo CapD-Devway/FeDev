@@ -2,11 +2,11 @@ import { DefaultTheme } from "styled-components";
 
 const color = {
   white: "#ffffff",
-  black: "#000000", 
+  black: "#000000",
   bgColorDeep: "#F1F1F5", // 배경색 깊음
   bgColorLight: "#F8F8FA", // 배경색 얕음
-  fontColorDark: "#191919",  // 폰트 컬러 강
-  fontColorGrey: "#767676",  // 폰트 컬러 중
+  fontColorDark: "#191919", // 폰트 컬러 강
+  fontColorGrey: "#767676", // 폰트 컬러 중
   fontColorLight: "#999999", // 폰트 컬러 약
   brandColorLight: "#EDF1D6", // 브랜드 컬러 밝음
   brandColorMedium: "#9DC08B", // 브랜드 컬러 중간
@@ -44,7 +44,7 @@ const fontSize = {
   fontSize56: "3.5rem",
   fontSize64: "4rem",
   fontSize72: "4.5rem",
-}
+};
 
 export type ColorsTypes = typeof color;
 export type fontWeightTypes = typeof fontWeight;

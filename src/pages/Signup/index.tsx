@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import Image from "next/image";
+import Link from "next/link";
 import animationDatatwo from "src/assets/lottieJSON/rocket.json";
 import { useRouter } from "next/router";
 import { useCallback, useContext, useState } from "react";
@@ -9,6 +10,8 @@ import CommonInputForm from "src/Components/CommonInputForm";
 import CommonBtn from "src/Components/CommonBtn";
 import styled from "styled-components";
 import LoginLottie from "src/Components/Common/LoginLottie";
+import GoogleLogin from "src/Components/GoogleLogin";
+import GithubLogin from "src/Components/GithubLogin";
 
 function Signup() {
   const router = useRouter();
@@ -122,16 +125,21 @@ function Signup() {
             <CommonBtn type="submit" name="계정 만들기" />
           </form>
           <StyledAlreadyP>
-            이미 계정이 있으신가요?{" "}
-            <StyledAlreadySpan>로그인</StyledAlreadySpan>
+            이미 계정이 있으신가요?
+            <Link href="/Signin">
+              <StyledAlreadySpan>로그인</StyledAlreadySpan>
+            </Link>
           </StyledAlreadyP>
           <StyledSplitDiv>또는</StyledSplitDiv>
+          <StyledSocialLoginDiv>
+            <GoogleLogin />
+            <GithubLogin />
+          </StyledSocialLoginDiv>
         </StyledUserBorder>
       </StyledSignUpDiv>
     </div>
   );
 }
-
 export default Signup;
 
 const StyledLogoBar = styled.div`
@@ -154,6 +162,9 @@ const StyledLottieDIv = styled.div`
 `;
 
 const StyledUserBorder = styled.div`
+  margin-top: 3.125rem;
+  width: 30.625rem;
+  height: 38.25rem;
   border: 0.125rem solid ${({ theme }) => theme.color.brandColorLight};
   border-radius: ${({ theme }) => theme.borderRadius.container};
   padding: 4rem 3rem;
@@ -175,6 +186,10 @@ const StyledAlreadyP = styled.p`
 const StyledAlreadySpan = styled.span`
   margin-left: 0.625rem;
   color: ${({ theme }) => theme.color.brandColorMedium};
+  transform: all 0.3s;
+  :hover {
+    color: ${({ theme }) => theme.color.branchColorDeep};
+  }
 `;
 
 const StyledSplitDiv = styled.div`
@@ -194,4 +209,10 @@ const StyledSplitDiv = styled.div`
     line-height: 0px;
     margin: 1.25rem 16px;
   }
+`;
+
+const StyledSocialLoginDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 50px;
 `;
