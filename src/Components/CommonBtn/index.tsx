@@ -22,6 +22,7 @@ const StyledButton = styled.button`
   width: 20.625rem;
   height: 2.25rem;
   margin: 0 auto;
+  margin-top: 1.25rem;
 
   border: 1px solid ${({ theme }) => theme.color.lineCOlorLight};
   border-radius: ${({ theme }) => theme.borderRadius.button};
@@ -38,7 +39,7 @@ const StyledButton = styled.button`
 `;
 
 const StyledButtonP = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.fontSize2};
+  font-size: ${({ theme }) => theme.fontSize.fontSize16};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
   margin: 0 auto;
 `;

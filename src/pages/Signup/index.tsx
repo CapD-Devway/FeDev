@@ -119,8 +119,13 @@ function Signup() {
                 placeholder="Name"
               />
             </div>
-            <CommonBtn type="submit" name="회원가입" />
+            <CommonBtn type="submit" name="계정 만들기" />
           </form>
+          <StyledAlreadyP>
+            이미 계정이 있으신가요?{" "}
+            <StyledAlreadySpan>로그인</StyledAlreadySpan>
+          </StyledAlreadyP>
+          <StyledSplitDiv>또는</StyledSplitDiv>
         </StyledUserBorder>
       </StyledSignUpDiv>
     </div>
@@ -157,5 +162,36 @@ const StyledUserBorder = styled.div`
 
 const StyledSignUpH3 = styled.p`
   font-size: ${({ theme }) => theme.fontSize.fontSize24};
-  color: ${({theme}) => theme.color.black}
+  color: ${({ theme }) => theme.color.black};
+`;
+
+const StyledAlreadyP = styled.p`
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: ${({ theme }) => theme.fontSize.fontSize12};
+  color: ${({ theme }) => theme.color.black};
+`;
+
+const StyledAlreadySpan = styled.span`
+  margin-left: 0.625rem;
+  color: ${({ theme }) => theme.color.brandColorMedium};
+`;
+
+const StyledSplitDiv = styled.div`
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  color: ${({ theme }) => theme.color.black};
+  font-size: 12px;
+  margin: 1.25rem 0rem;
+  ::before,
+  ::after {
+    content: "";
+    flex-grow: 1;
+    background: ${({ theme }) => theme.color.lineColorMiddle};
+    height: 1px;
+    font-size: 0px;
+    line-height: 0px;
+    margin: 1.25rem 16px;
+  }
 `;
