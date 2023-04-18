@@ -11,6 +11,7 @@ import CommonInputForm from "src/Components/CommonInputForm";
 import CommonBtn from "src/Components/CommonBtn";
 import GoogleLogin from "src/Components/GoogleLogin";
 import GithubLogin from "src/Components/GithubLogin";
+import BottomNav from "src/Components/Nav/BottomNav";
 
 function Signin() {
   const router = useRouter();
@@ -106,6 +107,7 @@ function Signin() {
           </StyledUserBorder>
         </StyledLoginDiv>
         {/* Login Footer Part */}
+        <BottomNav />
       </div>
     </>
   );
