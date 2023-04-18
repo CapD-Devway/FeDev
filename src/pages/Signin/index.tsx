@@ -1,13 +1,60 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import LoginLottie from "src/Components/Common/LoginLottie";
-import animationData from "src/assets/lottieJSON/collabo.json";
+import animationDatatwo from "src/assets/lottieJSON/rocket.json";
 import styled from "styled-components";
+import { useRouter } from "next/router";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "src/constants/firebaseConfig";
+import CommonInputForm from "src/Components/CommonInputForm";
+import CommonBtn from "src/Components/CommonBtn";
+import GoogleLogin from "src/Components/GoogleLogin";
+import GithubLogin from "src/Components/GithubLogin";
 
 function Signin() {
+  const router = useRouter();
+
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  // 이메일 입력 부분
+  const onSetEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setEmail(e.target.value);
+  }, []);
+
+  // 비밀번호 입력 부분
+  const onSetPassword = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault();
+      setPassword(e.target.value);
+    },
+    []
+  );
+
+  // firebase에서 제공하는 로그인 함수 사용
+  const onLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        router.push("/");
+        console.log(user.displayName);
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
+
   return (
     <>
-      <StyledContainer>
+      <div>
         {/* Login Nav Bar Part */}
         <StyledLogoBar>
           <Image
@@ -20,25 +67,51 @@ function Signin() {
         {/* Login Body Part */}
         <StyledLoginDiv>
           <StyledLottieDIv>
-            <LoginLottie lottieData={animationData} width={600} height={580} />
+            <LoginLottie
+              lottieData={animationDatatwo}
+              width={500}
+              height={500}
+            />
           </StyledLottieDIv>
-          <div>
-            <StyledH3>로그인</StyledH3>
-            
-          </div>
+          <StyledUserBorder>
+            <StyledSignUpH3>로그인</StyledSignUpH3>
+            <form onSubmit={onLogin}>
+              <CommonInputForm
+                type="email"
+                id="Email"
+                onChange={onSetEmail}
+                value={email}
+                placeholder="Email"
+              />
+              <CommonInputForm
+                type="password"
+                id="Password"
+                onChange={onSetPassword}
+                value={password}
+                placeholder="Password"
+              />
+              <Link href="/ForgotPassword">
+                <StyledAlreadyP>비밀번호 잊어버리셨나요?</StyledAlreadyP>
+              </Link>
+              <CommonBtn type="submit" name="로그인" />
+              <Link href="/Signup">
+                <StyledAlreadyDiv>계정이 없으신가요?</StyledAlreadyDiv>
+              </Link>
+            </form>
+            <StyledSplitDiv>또는</StyledSplitDiv>
+            <StyledSocialLoginDiv>
+              <GoogleLogin />
+              <GithubLogin />
+            </StyledSocialLoginDiv>
+          </StyledUserBorder>
         </StyledLoginDiv>
         {/* Login Footer Part */}
-      </StyledContainer>
+      </div>
     </>
   );
 }
 
 export default Signin;
-
-const StyledContainer = styled.div`
-  width: 90rem;
-  height: 56.25rem;
-`;
 
 const StyledLogoBar = styled.div`
   width: 88rem;
@@ -59,6 +132,69 @@ const StyledLottieDIv = styled.div`
   margin-top: 0.625rem;
 `;
 
-const StyledH3 = styled.h3`
+const StyledUserBorder = styled.div`
+  margin-top: 3.125rem;
+  width: 30.625rem;
+  height: 38.25rem;
+  border: 0.125rem solid ${({ theme }) => theme.color.brandColorLight};
+  border-radius: ${({ theme }) => theme.borderRadius.container};
+  padding: 4rem 3rem;
+  box-shadow: rgba(172, 243, 162, 0.3) 0px 2px 8px 0px;
+`;
+
+const StyledSignUpH3 = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.fontSize24};
   color: ${({ theme }) => theme.color.black};
+`;
+
+const StyledAlreadyDiv = styled.div`
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: ${({ theme }) => theme.fontSize.fontSize12};
+  color: ${({ theme }) => theme.color.black};
+  opacity: 0.6;
+  transition: all 0.5s;
+  :hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+`;
+
+const StyledAlreadyP = styled.p`
+  margin-top: 1.25rem;
+  text-align: right;
+  font-size: ${({ theme }) => theme.fontSize.fontSize12};
+  color: ${({ theme }) => theme.color.black};
+  opacity: 0.6;
+  transform: translateX(-1.875rem);
+  transition: all 0.5s;
+  :hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+`;
+
+const StyledSplitDiv = styled.div`
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  color: ${({ theme }) => theme.color.black};
+  font-size: 12px;
+  margin: 1.25rem 0rem;
+  ::before,
+  ::after {
+    content: "";
+    flex-grow: 1;
+    background: ${({ theme }) => theme.color.lineColorMiddle};
+    height: 1px;
+    font-size: 0px;
+    line-height: 0px;
+    margin: 1.25rem 16px;
+  }
+`;
+
+const StyledSocialLoginDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 50px;
 `;

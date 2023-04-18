@@ -1,12 +1,15 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import styled, { ThemeProvider } from "styled-components";
-import { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren, useContext, useEffect } from "react";
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/Theme/theme";
 import useWindowSize from "src/hooks/useWindowSize";
+import { AuthContext } from "src/context/authContenxt";
 
 function App({ Component, pageProps }: AppProps) {
+  const userInfo = useContext(AuthContext);
+  console.log(userInfo);
   return (
     <>
       <Head>

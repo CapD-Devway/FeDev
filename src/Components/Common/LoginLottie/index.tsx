@@ -85,6 +85,8 @@ const StyledTextSpan = styled.span`
 `;
 
 const StyledH1 = styled.h1`
+  font-size: ${({ theme }) => theme.fontSize.fontSize32};
+  font-weight: ${({ theme }) => theme.fontWeight.normal};
   color: ${({ theme }) => theme.color.black};
 `;
 

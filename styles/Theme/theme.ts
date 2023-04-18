@@ -2,11 +2,11 @@ import { DefaultTheme } from "styled-components";
 
 const color = {
   white: "#ffffff",
-  black: "#000000", 
+  black: "#000000",
   bgColorDeep: "#F1F1F5", // 배경색 깊음
   bgColorLight: "#F8F8FA", // 배경색 얕음
-  fontColorDark: "#191919",  // 폰트 컬러 강
-  fontColorGrey: "#767676",  // 폰트 컬러 중
+  fontColorDark: "#191919", // 폰트 컬러 강
+  fontColorGrey: "#767676", // 폰트 컬러 중
   fontColorLight: "#999999", // 폰트 컬러 약
   brandColorLight: "#EDF1D6", // 브랜드 컬러 밝음
   brandColorMedium: "#9DC08B", // 브랜드 컬러 중간
@@ -28,21 +28,23 @@ const fontWeight = {
 const borderRadius = {
   input: "0.75rem",
   button: "0.625rem",
+  container: "0.375rem",
 };
 
 const fontSize = {
-  fontSize1: "0.75rem",
-  fontSize2: "1rem",
-  fontSize3: "1.5rem",
-  fontSize4: "1.75rem",
-  fontSize5: "2rem",
-  fontSize6: "2.25rem",
-  fontSize7: "2.5rem",
-  fontSize8: "3rem",
-  fontSize9: "3.5rem",
-  fontSize10: "4rem",
-  fontSize11: "4.5rem",
-}
+  fontSize12: "0.75rem",
+  fontSize14: "0.875rem",
+  fontSize16: "1rem",
+  fontSize24: "1.5rem",
+  fontSize28: "1.75rem",
+  fontSize32: "2rem",
+  fontSize36: "2.25rem",
+  fontSize40: "2.5rem",
+  fontSize48: "3rem",
+  fontSize56: "3.5rem",
+  fontSize64: "4rem",
+  fontSize72: "4.5rem",
+};
 
 export type ColorsTypes = typeof color;
 export type fontWeightTypes = typeof fontWeight;

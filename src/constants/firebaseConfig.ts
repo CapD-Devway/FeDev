@@ -14,6 +14,14 @@ import {
   PROJECT_ID,
   STORAGE_BUCKET,
 } from "./firebaseUrl";
+import {
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
+  addDoc,
+} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -30,7 +38,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const analytics = getAnalytics(app);
+const db = getFirestore(app);
+// const analytics = getAnalytics(app);
 const provider = new GoogleAuthProvider();
 
 // 사용자가 선호하는 언어로 현지화
@@ -41,4 +50,4 @@ provider.setCustomParameters({
   login_hint: "user@example.com",
 });
 
-export { app, auth };
+export { app, auth, db };
