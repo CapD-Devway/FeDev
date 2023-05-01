@@ -3,10 +3,17 @@ import styled from "styled-components";
 
 interface IInputFormProps {
   type: "text" | "email" | "password";
-  id?: "Email" | "Password" | "Name";
+  id?: "Email" | "Password" | "Name" | "Department" | "Department" | "ClassNum";
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   value: string;
-  placeholder: "Email" | "Password" | "Name";
+  placeholder:
+    | "Email"
+    | "Password"
+    | "Name"
+    | "이름을 적어주세요"
+    | "학과를 적어주세요"
+    | "이메일을 적어주세요"
+    | "학번을 적어주세요";
 }
 
 interface IInputLabelProps {
