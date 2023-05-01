@@ -1,23 +1,31 @@
 import axios from "axios";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { ChangeEvent, useRef, useState } from "react";
-import CommonBtn from "src/Components/CommonBtn";
-import CommonInputForm from "src/Components/CommonInputForm";
-import DevToolCheckBox from "src/Components/DevToolCheckBox";
+import { ChangeEvent, useCallback, useRef, useState } from "react";
 import Nav from "src/Components/Nav";
 import BottomNav from "src/Components/Nav/BottomNav";
 import { Avatar } from "antd";
 import styled from "styled-components";
 
 function Profile() {
+  const checkBoxList = [
+    "FE 개발자",
+    "BE 개발자",
+    "IOS",
+    "웹 개발자",
+    "안드로이드 개발자",
+    "웹 디자이너",
+    "UI/UX 디자이너",
+    "Web Publisher",
+  ];
   const router = useRouter();
 
   const [name, setName] = useState<string>("");
   const [department, setDepartment] = useState<string>("");
   const [classNum, setClassNum] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [job, setJob] = useState<string>("");
+  const [toolCheckedList, setToolCheckedList] = useState<string[]>([]);
+  const [isChecked, setIsChecked] = useState(false);
+  // const [job, setJob] = useState<string>("");
   const [devTool, SetDevTool] = useState<string>("");
   const [selfIntroduce, SetSelfIntroduce] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
@@ -38,20 +46,37 @@ function Profile() {
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
-  const onChangeJob = (e: ChangeEvent<HTMLInputElement>) => {
-    setJob(e.target.value);
-  };
+
+  // 체크박스의 값을 인자로 받아, 해당 값이 체크된 경우 toolCheckedList 배열에 추가, 해제된 경우 배열에서 제거
+  const onChangeItemHandler = useCallback(
+    (value: string, isChecked: boolean) => {
+      if (isChecked) {
+        setToolCheckedList((prev) => [...prev, value]);
+        return;
+      }
+      if (!isChecked && toolCheckedList.includes(value)) {
+        setToolCheckedList(toolCheckedList.filter((item) => item !== value));
+        return;
+      }
+    },
+    [toolCheckedList]
+  );
+  // 체크박스의 체크여부가 변경될 때마다 호출
+  // 현재 체크박스의 isChecked 상태 업데이트, Handler 함수 호출 해당 체크박스의 값을 배열에 추가하거나 제거
+  const checkHandler = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>, value: string) => {
+      setIsChecked(!isChecked);
+      onChangeItemHandler(value, e.target.checked);
+    },
+    [onChangeItemHandler, isChecked]
+  );
+
   const onChangeDevtool = (e: ChangeEvent<HTMLInputElement>) => {
     SetDevTool(e.target.value);
   };
   const onChangeSelfIntrouce = (e: ChangeEvent<HTMLInputElement>) => {
     SetSelfIntroduce(e.target.value);
   };
-  // const onChangeProfileImage = (e: ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files && e.target.files.length > 0) {
-  //     setProfileImage(e.target.files[0]);
-  //   }
-  // };
 
   const onChangeProfileImages = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -78,43 +103,17 @@ function Profile() {
     }
   };
 
-  // const onChangeProfileImages = (e: ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files && e.target.files[0]) {
-  //     setFile(e.target.files[0]);
-  //     const reader = new FileReader();
-  //     reader.onload = () => {
-  //       if (reader.readyState === 2) {
-  //         setProfileImage(reader.result);
-  //       }
-  //     };
-  //     reader.readAsDataURL(file);
-  //   } else {
-  //     setProfileImage(
-  //       "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-  //     );
-  //   }
-  // };
-
-  // if (e.target.files[0]) {
-  //   setFile(e.target.files[0])
-  // } else {
-  //   setProfileImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
-  //   return;
-  // }// 화면에 프로필 사진 표시
-  // const reader = new FileReader();
-  // reader.onload = () => {
-  //   if (reader.readyState === 2) {
-  //     setProfileImage(reader.result)
-  //   }
-  // }
-  // reader.readAsDataURL(e.target.files[0]);
   function onSubmit() {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("department", department);
     formData.append("classNum", classNum);
+    // new Blob([item])은 item 문자열을 Blob으로 변환하는 것
+    // FormData.append 메서드의 첫 번째 인자는 key, 두 번째 인자는 value로 설정
+    toolCheckedList.forEach((item) => {
+      formData.append("toolCheckedList", new Blob([item]));
+    });
     formData.append("email", email);
-    formData.append("job", job);
     formData.append("devTool", devTool);
     formData.append("selfIntroduce", selfIntroduce);
     if (profileImage) {
@@ -179,13 +178,32 @@ function Profile() {
           </StyledInputDiv>
           <StyledInputDiv>
             <StyledInputLabel>직무 선택</StyledInputLabel>
-            <DevToolCheckBox />
+            {/* <DevToolCheckBox /> */}
+            {/* 추가부분 */}
+            <StyledCheckContainer>
+              {/* map 함수 사용 --> checkBoxList 배열의 각 요소 순회 및 체크박스와 라벨 렌더링 */}
+              {checkBoxList.map((item, idx) => (
+                <StyledCheckedCard
+                  key={idx}
+                  className={`${isChecked ? "checked" : ""} checkboxCard`}
+                >
+                  <input
+                    type="checkbox"
+                    id={item}
+                    checked={toolCheckedList.includes(item)}
+                    onChange={(e) => checkHandler(e, item)}
+                  />
+                  <label htmlFor={item}>{item}</label>
+                </StyledCheckedCard>
+              ))}
+            </StyledCheckContainer>
+            {/* 추가부분 */}
           </StyledInputDiv>
           <StyledInputDiv>
             <StyledInputLabel>개발도구</StyledInputLabel>
             <StyledInput type="text" id="devTool" onChange={onChangeDevtool} />
             <StyledPlaceDiv>
-              자신이 주로 사용하는 도구를 써주세요.
+              자신이 주로 사용하는 도구를 써주세요. ex: Spring, React, Blender
             </StyledPlaceDiv>
           </StyledInputDiv>
           <StyledInputDiv>
@@ -294,5 +312,48 @@ const StyledButton = styled.button`
     background-color: ${({ theme }) => theme.color.brandColorMedium};
     border-color: ${({ theme }) => theme.color.lineColorMiddle};
     color: ${({ theme }) => theme.color.white};
+  }
+`;
+
+// 추가부분
+const StyledCheckContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+`;
+
+const StyledCheckedCard = styled.div`
+  width: fit-content;
+  padding: 0.575rem 0.75rem;
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input,
+  label {
+    border: 1px solid ${({ theme }) => theme.color.lineColorMiddle};
+    border-radius: 10px;
+    padding: 0.575rem 0.75rem;
+
+    cursor: pointer;
+
+    color: ${({ theme }) => theme.color.lineColorMiddle};
+    font-size: ${({ theme }) => theme.fontSize.fontSize12};
+  }
+
+  input:checked ~ label {
+    border: 1px solid transparent;
+    border-radius: ${({ theme }) => theme.borderRadius.input};
+
+    outline: 1px solid ${({ theme }) => theme.color.brandColorMedium};
+    color: ${({ theme }) => theme.color.brandColorMedium};
+    transform: scale(1.2);
+
+    transition: all 0.5s;
   }
 `;

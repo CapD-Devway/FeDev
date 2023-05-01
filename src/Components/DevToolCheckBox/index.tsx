@@ -13,23 +13,26 @@ const checkBoxList = [
 ];
 
 function DevToolCheckBox() {
+  // 체크된 체크박스의 값을 저장하는 배열
   const [toolCheckedList, setToolCheckedList] = useState<string[]>([]);
+  // 현재 체크박스의 체크 여부 저장
   const [isChecked, setIsChecked] = useState(false);
 
+  // 체크박스의 값을 인자로 받아, 해당 값이 체크된 경우 toolCheckedList 배열에 추가, 해제된 경우 배열에서 제거
   const checkedItemHandler = (value: string, isChecked: boolean) => {
     if (isChecked) {
       setToolCheckedList((prev) => [...prev, value]);
-
       return;
     }
     if (!isChecked && toolCheckedList.includes(value)) {
       setToolCheckedList(toolCheckedList.filter((item) => item !== value));
-
       return;
     }
     return;
   };
 
+  // 체크박스의 체크여부가 변경될 때마다 호출
+  // 현재 체크박스의 isChecked 상태 업데이트, Handler 함수 호출 해당 체크박스의 값을 배열에 추가하거나 제거
   const checkHandler = (
     e: React.ChangeEvent<HTMLInputElement>,
     value: string
@@ -38,6 +41,7 @@ function DevToolCheckBox() {
     checkedItemHandler(value, e.target.checked);
   };
 
+  // 폼 제출용 함수
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -50,6 +54,7 @@ function DevToolCheckBox() {
     <>
       {/* <form onSubmit={onSubmit}> */}
       <StyledCheckContainer>
+        {/* map 함수 사용 --> checkBoxList 배열의 각 요소 순회 및 체크박스와 라벨 렌더링 */}
         {checkBoxList.map((item, idx) => (
           <StyledCheckedCard
             key={idx}
