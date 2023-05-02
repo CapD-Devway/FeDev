@@ -134,26 +134,30 @@ function Profile() {
         {/* <StyledForm onSubmit={onSubmit}> */}
         <div>
           <StyledInputDiv>
-            <StyledInputLabel>프로필 이미지</StyledInputLabel>
-            <Avatar
-              src={profileImage}
-              style={{ margin: "0.325rem" }}
-              size={50}
-              onClick={() => {
-                if (fileInput.current) {
-                  fileInput.current.click();
-                }
-              }}
-            />
-            <StyledInput
-              type="file"
-              style={{ display: "none" }}
-              id="profileImage"
-              accept="'image/jpg,image/png,image/jpeg"
-              onChange={onChangeProfileImages}
-              ref={fileInput}
-            />
-            <button onClick={() => fileInput.current?.click()}>Upload</button>
+            <StyledProfileDiv>
+              <Avatar
+                src={profileImage}
+                style={{ margin: "0.325rem" }}
+                size={100}
+                onClick={() => {
+                  if (fileInput.current) {
+                    fileInput.current.click();
+                  }
+                }}
+              />
+              <StyledInput
+                type="file"
+                style={{ display: "none" }}
+                id="profileImage"
+                accept="'image/jpg,image/png,image/jpeg"
+                onChange={onChangeProfileImages}
+                ref={fileInput}
+              />
+              <StyledUserNameButton onClick={() => fileInput.current?.click()}>
+                프로필 이미지 변경
+              </StyledUserNameButton>
+            </StyledProfileDiv>
+            {/* <StyledInputLabel>프로필 이미지</StyledInputLabel> */}
           </StyledInputDiv>
           <StyledInputDiv>
             <StyledInputLabel>이름</StyledInputLabel>
@@ -254,7 +258,7 @@ const StyledProfileBorder = styled.div`
   margin: 0 auto;
   margin-top: 3.125rem;
   width: 44.75rem;
-  height: 62rem;
+  height: 70rem;
   border: 0.125rem solid ${({ theme }) => theme.color.brandColorLight};
   border-radius: ${({ theme }) => theme.borderRadius.container};
   padding: 4rem 3rem;
@@ -370,8 +374,21 @@ const StyledCheckedCard = styled.div`
   }
 `;
 
-
 // 그냥 잠깐 스타일 확인용
 const StyledUserNameDiv = styled.div`
   color: black;
-`
+`;
+const StyledUserNameButton = styled.button`
+  font-size: ${({ theme }) => theme.fontSize.fontSize14};
+  color: ${({ theme }) => theme.color.fontColorLight};
+  transition: all 0.5s;
+  :hover {
+    color: ${({ theme }) => theme.color.fontColorGrey};
+  }
+`;
+
+const StyledProfileDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
