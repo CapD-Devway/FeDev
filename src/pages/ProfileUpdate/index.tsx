@@ -1,12 +1,15 @@
-import axios from "axios";
+// import axios from "axios";
 import { useRouter } from "next/router";
-import { ChangeEvent, useCallback, useRef, useState } from "react";
+import { ChangeEvent, useCallback, useContext, useRef, useState } from "react";
+import { User } from "firebase/auth";
 import Nav from "src/Components/Nav";
 import BottomNav from "src/Components/Nav/BottomNav";
 import { Avatar } from "antd";
 import styled from "styled-components";
+import { UserContext } from "src/provider/authProvider";
 
 function Profile() {
+  const { user } = useContext(UserContext);
   const checkBoxList = [
     "FE 개발자",
     "BE 개발자",
@@ -155,6 +158,15 @@ function Profile() {
           <StyledInputDiv>
             <StyledInputLabel>이름</StyledInputLabel>
             <StyledInput type="text" id="name" onChange={onChangeName} />
+            {user ? (
+              <StyledUserNameDiv>
+                <p>{user.email}</p>
+              </StyledUserNameDiv>
+            ) : (
+              <StyledUserNameDiv>
+                <p>로그인 해주세요</p>
+              </StyledUserNameDiv>
+            )}
           </StyledInputDiv>
           <StyledInputDiv>
             <StyledInputLabel>학과</StyledInputLabel>
@@ -357,3 +369,9 @@ const StyledCheckedCard = styled.div`
     transition: all 0.5s;
   }
 `;
+
+
+// 그냥 잠깐 스타일 확인용
+const StyledUserNameDiv = styled.div`
+  color: black;
+`
