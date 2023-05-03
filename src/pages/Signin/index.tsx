@@ -12,6 +12,7 @@ import CommonBtn from "src/Components/CommonBtn";
 import GoogleLogin from "src/Components/GoogleLogin";
 import GithubLogin from "src/Components/GithubLogin";
 import BottomNav from "src/Components/Nav/BottomNav";
+import { UserContext } from "src/provider/authProvider";
 
 function Signin() {
   const router = useRouter();
@@ -44,6 +45,7 @@ function Signin() {
         const user = userCredential.user;
         router.push("/");
         console.log(user.displayName);
+        console.log(UserContext.displayName);
         console.log(user);
       })
       .catch((error) => {

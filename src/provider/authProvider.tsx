@@ -1,7 +1,7 @@
 import { User } from "firebase/auth";
 import React, { PropsWithChildren, useEffect, useState } from "react";
 import { auth } from "src/constants/firebaseConfig";
-import { AuthContext } from "src/context/authContenxt";
+import { AuthContext } from "src/context/authContext";
 
 // export const UserContext = React.createContext(null);
 

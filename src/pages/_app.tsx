@@ -5,11 +5,14 @@ import { PropsWithChildren, useContext, useEffect } from "react";
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/Theme/theme";
 import useWindowSize from "src/hooks/useWindowSize";
-import { AuthContext } from "src/context/authContenxt";
+import { AuthContext } from "src/context/authContext";
+import { UserContext } from "src/provider/authProvider";
 
 function App({ Component, pageProps }: AppProps) {
   const userInfo = useContext(AuthContext);
+  const userInfos = useContext(UserContext);
   console.log(userInfo);
+  console.log(userInfos);
   return (
     <>
       <Head>

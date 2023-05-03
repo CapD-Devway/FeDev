@@ -4,7 +4,7 @@ import Link from "next/link";
 import animationDatatwo from "src/assets/lottieJSON/rocket.json";
 import { useRouter } from "next/router";
 import { useCallback, useContext, useState } from "react";
-import { AuthContext } from "src/context/authContenxt";
+import { AuthContext } from "src/context/authContext";
 import { auth } from "src/constants/firebaseConfig";
 import CommonInputForm from "src/Components/CommonInputForm";
 import CommonBtn from "src/Components/CommonBtn";
