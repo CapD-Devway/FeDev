@@ -1,4 +1,5 @@
 import { Avatar } from "antd";
+import Link from "next/link";
 import { useContext, useState } from "react";
 import Nav from "src/Components/Nav";
 import BottomNav from "src/Components/Nav/BottomNav";
@@ -40,7 +41,9 @@ function Profile() {
                 <StyledJobP>FE 개발자</StyledJobP>
               </StyledNameDiv>
               <StyledUpdateDiv>
-                <StyledUpdateP>프로필 수정</StyledUpdateP>
+                <Link href="/ProfileUpdate">
+                  <StyledUpdateP>프로필 수정</StyledUpdateP>
+                </Link>
               </StyledUpdateDiv>
             </StyledTextProfileDiv>
           </StyledProfileDiv>
@@ -65,26 +68,33 @@ function Profile() {
                 <Avatar
                   src={profileImage}
                   style={{ margin: "0.125rem" }}
-                  size={40}
+                  size={60}
                 />
               </div>
             )}
           </div>
-          <div>이메일</div>
-          <p>jaehun990909@naver.com</p>
-          <div>학과</div>
-          <p>IT 융합자율학부</p>
-          <div>학번</div>
-          <p>201814112</p>
+          <StyledCardTitle>이메일</StyledCardTitle>
+          <StyledCardContent>jaehun990909@naver.com</StyledCardContent>
+          <StyledCardTitle>학과</StyledCardTitle>
+          <StyledCardContent>IT 융합자율학부</StyledCardContent>
+          <StyledCardTitle>학번</StyledCardTitle>
+          <StyledCardContent>201814112</StyledCardContent>
         </StyledProfileCard>
       </StyledContainer>
+      <StyledFirstHrDiv></StyledFirstHrDiv>
 
       {/* my tool, myself introduce */}
-      <div></div>
-      <div>
+      <StyledContainerTwo>
+        <StyledToolDiv>
+          <StyledTeamP>나의 도구</StyledTeamP>
+          <StyledJoinInTeamP>HTML, JavaScript, React</StyledJoinInTeamP>
+        </StyledToolDiv>
         {/* Text & my introduce box */}
-        <div></div>
-      </div>
+        <StyledIntroDiv>
+          <StyledTeamP>한줄 소개</StyledTeamP>
+          <StyledIntroCard>자기에게 솔직하고, 적당히 독해라</StyledIntroCard>
+        </StyledIntroDiv>
+      </StyledContainerTwo>
       <BottomNav />
     </>
   );
@@ -179,7 +189,7 @@ const StyledTeamP = styled.p`
 
 const StyledJoinInTeamP = styled.p`
   margin-top: 1.625rem;
-  font-size: ${({ theme }) => theme.fontSize.fontSize16};
+  font-size: ${({ theme }) => theme.fontSize.fontSize14};
 `;
 
 const StyledProfileCard = styled.div`
@@ -191,10 +201,58 @@ const StyledProfileCard = styled.div`
   justify-content: center;
 
   margin-top: 6.25rem;
+  gap: 10px;
 
   border: none;
   border-radius: 25px;
 
   background-color: ${({ theme }) => theme.color.bgColorDeep};
-  color: ${({theme}) => theme.color.black};
+  color: ${({ theme }) => theme.color.black};
+`;
+
+const StyledCardTitle = styled.div`
+  font-size: ${({ theme }) => theme.fontSize.fontSize16};
+`;
+
+const StyledCardContent = styled.p`
+  font-size: ${({ theme }) => theme.fontSize.fontSize12};
+`;
+
+// 나의 도구, 나의 소개 2번째 Container CSS
+
+const StyledContainerTwo = styled.div`
+  display: flex;
+  flex-direction: row;
+  color: ${({ theme }) => theme.color.black};
+`;
+
+const StyledToolDiv = styled.div`
+  width: 61.25rem;
+  margin-left: 6.25rem;
+  margin-top: 2.25rem;
+
+  color: ${({ theme }) => theme.color.black};
+`;
+
+const StyledIntroDiv = styled.div`
+  width: 35%;
+  margin-top: 2.25rem;
+`;
+
+const StyledIntroCard = styled.div`
+  width: 20.75rem;
+  height: 10.625rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 1.25rem;
+  gap: 10px;
+
+  border: none;
+  border-radius: 25px;
+
+  background-color: ${({ theme }) => theme.color.bgColorDeep};
+  color: ${({ theme }) => theme.color.black};
 `;
