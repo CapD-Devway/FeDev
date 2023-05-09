@@ -8,7 +8,7 @@ import { Avatar } from "antd";
 import styled from "styled-components";
 import { UserContext } from "src/provider/authProvider";
 
-function Profile() {
+function ProfileUpdate() {
   const { user } = useContext(UserContext);
   const checkBoxList = [
     "FE 개발자",
@@ -252,7 +252,7 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default ProfileUpdate;
 
 const StyledProfileBorder = styled.div`
   margin: 0 auto;
