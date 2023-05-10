@@ -184,7 +184,7 @@ const StyledJoiningTeamDiv = styled.div`
 
 const StyledTeamP = styled.p`
   font-size: ${({ theme }) => theme.fontSize.fontSize24};
-  font-weight: ${({ theme }) => theme.fontWeight.Regular};
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
 `;
 
 const StyledJoinInTeamP = styled.p`

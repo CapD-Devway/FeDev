@@ -20,7 +20,7 @@ const color = {
 
 const fontWeight = {
   light: 300,
-  Regular: 400,
+  regular: 400,
   normal: 500,
   bold: 700,
 };
