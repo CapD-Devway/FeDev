@@ -1,18 +1,18 @@
-import React, { useCallback, useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
-import LoginLottie from "src/Components/Common/LoginLottie";
-import animationDatatwo from "src/assets/lottieJSON/rocket.json";
-import styled from "styled-components";
 import { useRouter } from "next/router";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "src/constants/firebaseConfig";
-import CommonInputForm from "src/Components/CommonInputForm";
+import React, { useCallback, useState } from "react";
+import animationDatatwo from "src/assets/lottieJSON/rocket.json";
+import LoginLottie from "src/Components/Common/LoginLottie";
 import CommonBtn from "src/Components/CommonBtn";
-import GoogleLogin from "src/Components/GoogleLogin";
+import CommonInputForm from "src/Components/CommonInputForm";
 import GithubLogin from "src/Components/GithubLogin";
+import GoogleLogin from "src/Components/GoogleLogin";
 import BottomNav from "src/Components/Nav/BottomNav";
+import { auth } from "src/constants/firebaseConfig";
 import { UserContext } from "src/provider/authProvider";
+import styled from "styled-components";
 
 function Signin() {
   const router = useRouter();

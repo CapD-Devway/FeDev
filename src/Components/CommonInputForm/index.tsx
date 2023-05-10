@@ -16,10 +16,6 @@ interface IInputFormProps {
     | "학번을 적어주세요";
 }
 
-interface IInputLabelProps {
-  placeholder: "Email" | "Password" | "Name";
-}
-
 function CommonInputForm({
   type,
   id,

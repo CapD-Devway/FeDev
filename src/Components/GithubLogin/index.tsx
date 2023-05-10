@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {
   GithubAuthProvider,
   User,
@@ -6,6 +5,7 @@ import {
   signInWithRedirect,
 } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { auth, db } from "src/constants/firebaseConfig";
 import styled from "styled-components";

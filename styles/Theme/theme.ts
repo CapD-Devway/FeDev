@@ -47,8 +47,8 @@ const fontSize = {
 };
 
 export type ColorsTypes = typeof color;
-export type fontWeightTypes = typeof fontWeight;
-export type borderRadius = typeof borderRadius;
+export type FontWeightTypes = typeof fontWeight;
+export type BorderRadius = typeof borderRadius;
 export type fontSizes = typeof fontSize;
 
 const theme: DefaultTheme = {
