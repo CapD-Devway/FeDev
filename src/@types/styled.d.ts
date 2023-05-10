@@ -10,7 +10,7 @@ declare module "styled-components" {
   export interface DefaultTheme {
     color: ColorsTypes;
     fontWeight: FontWeightTypes;
-    borderRadius: borderRadius;
+    borderRadius: BorderRadius;
     fontSize: fontSizes;
   }
 }

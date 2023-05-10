@@ -1,17 +1,17 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
-import animationDatatwo from "src/assets/lottieJSON/rocket.json";
 import { useRouter } from "next/router";
-import { useCallback, useContext, useState } from "react";
-import { AuthContext } from "src/context/authContext";
-import { auth } from "src/constants/firebaseConfig";
-import CommonInputForm from "src/Components/CommonInputForm";
-import CommonBtn from "src/Components/CommonBtn";
-import styled from "styled-components";
+import React, { useCallback, useContext, useState } from "react";
+import animationDatatwo from "src/assets/lottieJSON/rocket.json";
 import LoginLottie from "src/Components/Common/LoginLottie";
-import GoogleLogin from "src/Components/GoogleLogin";
+import CommonBtn from "src/Components/CommonBtn";
+import CommonInputForm from "src/Components/CommonInputForm";
 import GithubLogin from "src/Components/GithubLogin";
+import GoogleLogin from "src/Components/GoogleLogin";
+import { auth } from "src/constants/firebaseConfig";
+import { AuthContext } from "src/context/authContext";
+import styled from "styled-components";
 
 function Signup() {
   const router = useRouter();

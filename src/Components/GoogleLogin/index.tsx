@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { GoogleAuthProvider, User, signInWithPopup } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { auth, db } from "src/constants/firebaseConfig";

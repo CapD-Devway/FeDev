@@ -1,12 +1,12 @@
 // import axios from "axios";
+import { Avatar } from "antd";
 import { useRouter } from "next/router";
-import { ChangeEvent, useCallback, useContext, useRef, useState } from "react";
-import { User } from "firebase/auth";
+import React, { ChangeEvent, useCallback, useContext, useRef, useState } from "react";
+// import { User } from "firebase/auth";
 import Nav from "src/Components/Nav";
 import BottomNav from "src/Components/Nav/BottomNav";
-import { Avatar } from "antd";
-import styled from "styled-components";
 import { UserContext } from "src/provider/authProvider";
+import styled from "styled-components";
 
 function ProfileUpdate() {
   const { user } = useContext(UserContext);

@@ -1,12 +1,12 @@
-import Image from "next/image";
 import { Auth, sendPasswordResetEmail } from "firebase/auth";
-import React, { useCallback, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { auth } from "src/constants/firebaseConfig";
+import React, { useCallback, useState } from "react";
+import animationDatatwo from "src/assets/lottieJSON/rocket.json";
+import LoginLottie from "src/Components/Common/LoginLottie";
 import CommonBtn from "src/Components/CommonBtn";
 import CommonInputForm from "src/Components/CommonInputForm";
-import LoginLottie from "src/Components/Common/LoginLottie";
-import animationDatatwo from "src/assets/lottieJSON/rocket.json";
+import { auth } from "src/constants/firebaseConfig";
 import styled from "styled-components";
 
 function ForgotPassword() {
