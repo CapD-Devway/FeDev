@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html, body {
-    background-color: ${({ theme }) => theme.color.bgColor};
+    background-color: ${({ theme }) => theme.color.bgColorLight};
     color: ${({ theme }) => theme.color.white};
   }
 
