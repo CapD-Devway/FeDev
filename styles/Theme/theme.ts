@@ -16,6 +16,7 @@ const color = {
   lineColorDark: "#191919", // 라인 컬러 짙음
   lineColorMiddle: "#DBDBDB", // 라인 컬러 중간
   lineCOlorLight: "#EDEDED", // 라인 컬러 얕음
+  borderColorLight: "#C2C2C2", // 컨테이너 색
 };
 
 const fontWeight = {
@@ -29,6 +30,7 @@ const borderRadius = {
   input: "0.75rem",
   button: "0.625rem",
   container: "0.375rem",
+  registerContainer: "2.25rem",
 };
 
 const fontSize = {
