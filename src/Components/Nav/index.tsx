@@ -14,11 +14,11 @@ function Nav() {
         />
       </div>
       <div>
-        <Link href="/SelfPr">
-          <StyledNavSpan>자기소개</StyledNavSpan>
-        </Link>
-        <Link href="/MateTeamMember">
+        <Link href="/TeamOneMate">
           <StyledNavSpan>팀원 구하기</StyledNavSpan>
+        </Link>
+        <Link href="/TeamMate">
+          <StyledNavSpan>팀 구하기</StyledNavSpan>
         </Link>
         <Link href="/Signin">
           <StyledNavSpan>로그인/회원가입</StyledNavSpan>
