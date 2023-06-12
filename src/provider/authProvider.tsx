@@ -1,9 +1,6 @@
 import { User } from "firebase/auth";
 import React, { PropsWithChildren, useEffect, useState } from "react";
 import { auth } from "src/constants/firebaseConfig";
-import { AuthContext } from "src/context/authContext";
-
-// export const UserContext = React.createContext(null);
 
 export const UserContext = React.createContext<{
   user: User | null;
@@ -21,7 +18,6 @@ const defaultHeaders: {
 
 const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
   const [user, setUser] = useState<User | null>(null);
-  const [registerFormOpen, setRegisterFormOpen] = useState(false);
   useEffect(() => {
     auth.onAuthStateChanged(async (firebaseUser) => {
       if (firebaseUser) {
@@ -52,19 +48,5 @@ const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
     </UserContext.Provider>
   );
 };
-
-// const AuthProvider = ({ children }: PropsWithChildren<{}>) => {
-//   const [user, setUser] = useState<User | null>(null);
-
-//   useEffect(() => {
-//     const subscribe = auth.onAuthStateChanged((fbUser) => {
-//       console.log(`구독 실행`, fbUser);
-//       setUser(fbUser);
-//     });
-//     return subscribe;
-//   }, []);
-
-//   return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
-// };
 
 export default AuthProvider;

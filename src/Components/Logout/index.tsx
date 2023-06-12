@@ -9,6 +9,7 @@ function Logout() {
   const logOut = async () => {
     await signOut(auth)
       .then(() => {
+        localStorage.removeItem("token")
         alert("로그아웃 완료");
         router.push("/Signin");
       })

@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, User } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -11,12 +11,12 @@ import GithubLogin from "src/Components/GithubLogin";
 import GoogleLogin from "src/Components/GoogleLogin";
 import BottomNav from "src/Components/Nav/BottomNav";
 import { auth } from "src/constants/firebaseConfig";
-import { UserContext } from "src/provider/authProvider";
+import { setToken } from "src/utils/token";
 import styled from "styled-components";
 
 function Signin() {
   const router = useRouter();
-
+  
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -43,9 +43,8 @@ function Signin() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        user.getIdToken().then((token)=>{setToken(token)});
         router.push("/");
-        console.log(user.displayName);
-        console.log(UserContext.displayName);
         console.log(user);
       })
       .catch((error) => {
