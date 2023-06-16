@@ -8,7 +8,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-// import { User } from "firebase/auth";
 import Nav from "src/Components/Nav";
 import BottomNav from "src/Components/Nav/BottomNav";
 import { UserContext } from "src/provider/authProvider";
@@ -196,7 +195,7 @@ function ProfileUpdate() {
           </StyledInputDiv>
           <StyledInputDiv>
             <StyledInputLabel>이메일</StyledInputLabel>
-            <StyledInput type="email" id="email" onChange={onChangeEmail} />
+            <StyledInput type="email" id="email" onChange={onChangeEmail} readOnly/>
           </StyledInputDiv>
           <StyledInputDiv>
             <StyledInputLabel>직무 선택</StyledInputLabel>

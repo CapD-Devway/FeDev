@@ -14,7 +14,7 @@ function Nav() {
         />
       </div>
       <div>
-        <Link href="/TeamOneMate">
+        <Link href="/">
           <StyledNavSpan>팀원 구하기</StyledNavSpan>
         </Link>
         <Link href="/TeamMate">

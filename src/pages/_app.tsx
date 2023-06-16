@@ -1,33 +1,45 @@
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { PropsWithChildren, useContext, useEffect } from "react";
-import { AuthContext } from "src/context/authContext";
+import { PropsWithChildren, useEffect } from "react";
 import useWindowSize from "src/hooks/useWindowSize";
-import { UserContext } from "src/provider/authProvider";
+import AuthProvider from "src/provider/authProvider";
 import styled, { ThemeProvider } from "styled-components";
 import GlobalStyle from "styles/GlobalStyle";
 import theme from "styles/Theme/theme";
 
 function App({ Component, pageProps }: AppProps) {
-  const userInfo = useContext(AuthContext);
-  const userInfos = useContext(UserContext);
-  console.log(userInfo);
-  console.log(userInfos);
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          uid: user.uid,
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+        })
+      );
+    }
+  });
   return (
     <>
-      <Head>
-        <title>Devway</title>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0 viewport-fit=cover"
-        />
-      </Head>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Layout>
-          <Component {...pageProps} />;
-        </Layout>
-      </ThemeProvider>
+      <AuthProvider>
+        <Head>
+          <title>Devway</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0 viewport-fit=cover"
+          />
+        </Head>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Layout>
+            <Component {...pageProps} />;
+          </Layout>
+        </ThemeProvider>
+      </AuthProvider>
     </>
   );
 }

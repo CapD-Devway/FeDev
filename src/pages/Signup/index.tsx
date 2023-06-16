@@ -10,12 +10,10 @@ import CommonInputForm from "src/Components/CommonInputForm";
 import GithubLogin from "src/Components/GithubLogin";
 import GoogleLogin from "src/Components/GoogleLogin";
 import { auth } from "src/constants/firebaseConfig";
-import { AuthContext } from "src/context/authContext";
 import styled from "styled-components";
 
 function Signup() {
   const router = useRouter();
-  const userInfo = useContext(AuthContext);
 
   const [registerEmail, setRegisterEmail] = useState<string>("");
   const [regitserPassword, setRegisterPassword] = useState<string>("");
