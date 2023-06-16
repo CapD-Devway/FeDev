@@ -1,5 +1,6 @@
 // import axios from "axios";
 import { Avatar } from "antd";
+import axios from "axios";
 import { useRouter } from "next/router";
 import React, {
   ChangeEvent,
@@ -8,10 +9,14 @@ import React, {
   useRef,
   useState,
 } from "react";
+import Loading from "src/Components/Common/Loading";
 import Nav from "src/Components/Nav";
 import BottomNav from "src/Components/Nav/BottomNav";
+import { API_BASED_URL } from "src/constants/apiUrl";
 import { UserContext } from "src/provider/authProvider";
 import styled from "styled-components";
+
+axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 
 function ProfileUpdate() {
   const { user } = useContext(UserContext);
@@ -129,6 +134,17 @@ function ProfileUpdate() {
       formData.append("profileImage", profileImage);
     }
     //TODO: 서버로 폼 데이터 전송 api 연결 axios 통신.
+    axios
+      .post<{}>(`${API_BASED_URL}/profile`, formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(() => {
+        <Loading />;
+        router.push("/");
+      });
   }
 
   return (
@@ -195,7 +211,7 @@ function ProfileUpdate() {
           </StyledInputDiv>
           <StyledInputDiv>
             <StyledInputLabel>이메일</StyledInputLabel>
-            <StyledInput type="email" id="email" onChange={onChangeEmail} readOnly/>
+            <StyledInput type="email" id="email" onChange={onChangeEmail} />
           </StyledInputDiv>
           <StyledInputDiv>
             <StyledInputLabel>직무 선택</StyledInputLabel>
@@ -239,7 +255,9 @@ function ProfileUpdate() {
             </StyledPlaceDiv>
           </StyledInputDiv>
           <StyledButtonContainer>
-            <StyledButton type="submit">변경하기</StyledButton>
+            <StyledButton type="submit" onClick={onSubmit}>
+              변경하기
+            </StyledButton>
             <StyledButton
               type="button"
               onClick={() => {
