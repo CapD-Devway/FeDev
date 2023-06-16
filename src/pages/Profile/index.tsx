@@ -51,7 +51,16 @@ function Profile() {
           <StyledFirstHrDiv></StyledFirstHrDiv>
           {/* Joinging Team */}
           <StyledJoiningTeamDiv>
-            <StyledTeamP>활동하고 있는 팀</StyledTeamP>
+            <StyledTeamRegisterDiv>
+              <StyledTeamP>활동하고 있는 팀</StyledTeamP>
+              <StyledUpdateDiv>
+                <StyledTeamRegiDiv>
+                  <Link href="/RegisterTeam">
+                    <StyledUpdateP>팀 등록하기</StyledUpdateP>
+                  </Link>
+                </StyledTeamRegiDiv>
+              </StyledUpdateDiv>
+            </StyledTeamRegisterDiv>
             <StyledJoinInTeamP>소속된 팀이 없습니다.</StyledJoinInTeamP>
           </StyledJoiningTeamDiv>
         </StyledMyInformDiv>
@@ -180,6 +189,16 @@ const StyledJoiningTeamDiv = styled.div`
   margin-top: 2.25rem;
 
   color: ${({ theme }) => theme.color.black};
+`;
+
+const StyledTeamRegisterDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const StyledTeamRegiDiv = styled.div`
+  margin-right: 70px;
 `;
 
 const StyledTeamP = styled.p`

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Loading from "src/Components/Common/Loading";
 import Nav from "src/Components/Nav";
 import BottomNav from "src/Components/Nav/BottomNav";
@@ -16,36 +17,38 @@ function TeamMate() {
       <StyledPageTitle>
         <p>팀 찾기</p>
       </StyledPageTitle>
-      <StyledTeamProfileCard>
-        <StyledTeamProfileContentsDiv>
-          <StyledProfileImgBox>
-            <Image
-              src="/images/tokyo.jpg"
-              alt="Tokyo Landscape"
-              width={56}
-              height={56}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "fill",
-              }}
-            />
-          </StyledProfileImgBox>
-          <StyledTeamProfileTexts>
-            <p>옷장 플랫폼 : CLOTHES</p>
-            <p>2023-05-31 ing~</p>
-          </StyledTeamProfileTexts>
-        </StyledTeamProfileContentsDiv>
-        <StyledTeamProfileHrDiv></StyledTeamProfileHrDiv>
-        <StyledTeamProfileMainTexts>
-          <p>소개</p>
-          <p>우리만의 옷장 플랫폼 만들기!</p>
-        </StyledTeamProfileMainTexts>
-        <StyledTeamProfileMainTexts>
-          <p>구하는 직무</p>
-          <p>FE 개발자 1명, BE 개발자 2명</p>
-        </StyledTeamProfileMainTexts>
-      </StyledTeamProfileCard>
+      <Link href="/TeamProfile">
+        <StyledTeamProfileCard>
+          <StyledTeamProfileContentsDiv>
+            <StyledProfileImgBox>
+              <Image
+                src="/images/tokyo.jpg"
+                alt="Tokyo Landscape"
+                width={56}
+                height={56}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "fill",
+                }}
+              />
+            </StyledProfileImgBox>
+            <StyledTeamProfileTexts>
+              <p>옷장 플랫폼 : CLOTHES</p>
+              <p>2023-05-31 ing~</p>
+            </StyledTeamProfileTexts>
+          </StyledTeamProfileContentsDiv>
+          <StyledTeamProfileHrDiv></StyledTeamProfileHrDiv>
+          <StyledTeamProfileMainTexts>
+            <p>소개</p>
+            <p>우리만의 옷장 플랫폼 만들기!</p>
+          </StyledTeamProfileMainTexts>
+          <StyledTeamProfileMainTexts>
+            <p>구하는 직무</p>
+            <p>FE 개발자 1명, BE 개발자 2명</p>
+          </StyledTeamProfileMainTexts>
+        </StyledTeamProfileCard>
+      </Link>
       <div>
         <Loading />
       </div>
@@ -71,6 +74,11 @@ const StyledTeamProfileCard = styled.div`
   height: 25rem;
   border: 1px solid ${({ theme }) => theme.color.brandColorMedium};
   border-radius: ${({ theme }) => theme.borderRadius.registerContainer};
+  transition: all.5s;
+  :hover {
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.color.brandColorLight};
+  }
 `;
 
 const StyledTeamProfileContentsDiv = styled.div`
