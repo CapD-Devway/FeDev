@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Loading from "src/Components/Common/Loading";
 import Nav from "src/Components/Nav";
 import BottomNav from "src/Components/Nav/BottomNav";
@@ -11,44 +12,46 @@ function Home() {
       <StyledPageTitle>
         <p>팀원 찾기</p>
       </StyledPageTitle>
-      <StyledTeamProfileCard>
-        <StyledTeamProfileContentsDiv>
-          <StyledProfileImgBox>
-            <Image
-              src="/images/tokyo.jpg"
-              alt="Tokyo Landscape"
-              width={56}
-              height={56}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "fill",
-              }}
-            />
-          </StyledProfileImgBox>
-          <StyledTeamProfileTexts>
-            <p>최재훈</p>
-            <p>IT융합자율학부</p>
-          </StyledTeamProfileTexts>
-        </StyledTeamProfileContentsDiv>
-        <StyledTeamProfileHrDiv></StyledTeamProfileHrDiv>
-        <StyledTeamProfileMainTexts>
-          <p>이메일</p>
-          <p>jaehun990909@gmail.com</p>
-        </StyledTeamProfileMainTexts>
-        <StyledTeamProfileMainTexts>
-          <p>학번</p>
-          <p>201814112</p>
-        </StyledTeamProfileMainTexts>
-        <StyledTeamProfileMainTexts>
-          <p>직무</p>
-          <p>FE개발자</p>
-        </StyledTeamProfileMainTexts>
-        <StyledTeamProfileMainTexts>
-          <p>한줄 소개</p>
-          <p>즐기기</p>
-        </StyledTeamProfileMainTexts>
-      </StyledTeamProfileCard>
+      <Link href="/Profile">
+        <StyledTeamProfileCard>
+          <StyledTeamProfileContentsDiv>
+            <StyledProfileImgBox>
+              <Image
+                src="/images/tokyo.jpg"
+                alt="Tokyo Landscape"
+                width={56}
+                height={56}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "fill",
+                }}
+              />
+            </StyledProfileImgBox>
+            <StyledTeamProfileTexts>
+              <p>최재훈</p>
+              <p>IT융합자율학부</p>
+            </StyledTeamProfileTexts>
+          </StyledTeamProfileContentsDiv>
+          <StyledTeamProfileHrDiv></StyledTeamProfileHrDiv>
+          <StyledTeamProfileMainTexts>
+            <p>이메일</p>
+            <p>jaehun990909@gmail.com</p>
+          </StyledTeamProfileMainTexts>
+          <StyledTeamProfileMainTexts>
+            <p>학번</p>
+            <p>201814112</p>
+          </StyledTeamProfileMainTexts>
+          <StyledTeamProfileMainTexts>
+            <p>직무</p>
+            <p>FE개발자</p>
+          </StyledTeamProfileMainTexts>
+          <StyledTeamProfileMainTexts>
+            <p>한줄 소개</p>
+            <p>즐기기</p>
+          </StyledTeamProfileMainTexts>
+        </StyledTeamProfileCard>
+      </Link>
       <div>
         <Loading />
       </div>
@@ -74,6 +77,11 @@ const StyledTeamProfileCard = styled.div`
   height: 28rem;
   border: 1px solid ${({ theme }) => theme.color.brandColorMedium};
   border-radius: ${({ theme }) => theme.borderRadius.registerContainer};
+  transition: all.5s;
+  :hover {
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.color.brandColorLight};
+  }
 `;
 
 const StyledTeamProfileContentsDiv = styled.div`
